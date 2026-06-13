@@ -42,16 +42,15 @@ namespace EasySell.Behaviors
 
         private void SellItemsConsequence(MenuCallbackArgs args)
         {
+            var modSetting = ModSettings.Instance;
             var settlement = Settlement.CurrentSettlement;
 
-            if (settlement.Town == null)
-            {
-                InformationManager.DisplayMessage(
-                    new InformationMessage("Автопродажа доступна только в городе."));
+            if (modSetting == null)
                 return;
-            }
 
-            var itemRoster = MobileParty.MainParty.ItemRoster;
+            var mainParty = MobileParty.MainParty;
+
+            var itemRoster = mainParty.ItemRoster;
 
             if (itemRoster.Count < 1)
             {
@@ -60,16 +59,27 @@ namespace EasySell.Behaviors
                 return;
             }
 
-            int threshold = ModSettings.Instance?.PriceThreshold ?? 1000;
             int totalGold = 0;
             int soldCount = 0;
 
             for (int i = itemRoster.Count - 1; i >= 0; i--)
             {
-                var item = itemRoster[i];
-                var itemObject = itemRoster.GetItemAtIndex(i);
 
-                if (item.Amount <= 0)
+                var rosterElement = itemRoster[i];
+
+                if (rosterElement.Amount <= 0)
+                    continue;
+
+                var itemObject = itemRoster.GetItemAtIndex(i);
+                int countToSell = rosterElement.Amount;
+
+
+                if (modSetting.IsFoodProtection && itemObject.IsFood)
+                {
+                    countToSell = rosterElement.Amount > modSetting.FoodReserveAmount ? rosterElement.Amount - modSetting.FoodReserveAmount : 0;
+                }
+
+                if (countToSell <= 0)
                     continue;
 
                 if (!CanSell(itemObject))
@@ -77,24 +87,22 @@ namespace EasySell.Behaviors
 
                 int itemPrice = settlement.Town.GetItemPrice(
                     itemObject,
-                    MobileParty.MainParty,
+                    mainParty,
                     true);
 
-                if (itemPrice <= 0 || itemPrice > threshold)
+                if (itemPrice <= 0 || itemPrice > modSetting.PriceThreshold)
                     continue;
 
-                int count = item.Amount;
-
-                totalGold += itemPrice * count;
-                soldCount += count;
-                itemRoster.AddToCounts(item.EquipmentElement, -count);
+                totalGold += itemPrice * countToSell;
+                soldCount += countToSell;
+                itemRoster.AddToCounts(rosterElement.EquipmentElement, -countToSell);
             }
 
             if (totalGold == 0)
             {
                 InformationManager.DisplayMessage(
                     new InformationMessage(
-                        $"Нет вещей для продажи подходящим условиям"));
+                        $"Нет подходящих предметов для продажи"));
                 return;
             }
 
@@ -128,6 +136,9 @@ namespace EasySell.Behaviors
                 case ItemObject.ItemTypeEnum.Horse:
                 case ItemObject.ItemTypeEnum.HorseHarness:
                     return settings.Horse;
+
+                case ItemObject.ItemTypeEnum.Animal:
+                    return settings.Animal;
 
                 case ItemObject.ItemTypeEnum.OneHandedWeapon:
                 case ItemObject.ItemTypeEnum.TwoHandedWeapon:

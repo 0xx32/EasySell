@@ -11,13 +11,13 @@
         },
         {
             "name": "Attach to Bannerlord [net472] (Steam/GOG/Epic)",
-            "type": "clr",
+            "type": "coreclr",
             "request": "attach",
             "processName": "Bannerlord.exe",
         },
         {
             "name": "Attach to BLSE Bannerlord [net472] (Steam/GOG/Epic)",
-            "type": "clr",
+            "type": "coreclr",
             "request": "attach",
             "processName": "Bannerlord.BLSE.Standalone.exe",
         },
