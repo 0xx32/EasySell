@@ -5,10 +5,11 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
+using EasySell.Settings;
 
-namespace EasySell
+namespace EasySell.Behaviors
 {
-    public class EasySellBehavior : CampaignBehaviorBase
+    public class SellBehavior : CampaignBehaviorBase
     {
         public override void RegisterEvents()
         {
@@ -59,7 +60,7 @@ namespace EasySell
                 return;
             }
 
-            int threshold = EasySellSettings.Instance?.PriceThreshold ?? 1000;
+            int threshold = ModSettings.Instance?.PriceThreshold ?? 1000;
             int totalGold = 0;
             int soldCount = 0;
 
@@ -111,7 +112,7 @@ namespace EasySell
 
         private static bool CanSell(ItemObject item)
         {
-            var settings = EasySellSettings.Instance;
+            var settings = ModSettings.Instance;
 
             if (settings == null)
                 return false;

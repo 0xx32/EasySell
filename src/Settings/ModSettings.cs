@@ -1,11 +1,10 @@
-﻿using MCM.Abstractions.Attributes;
+using MCM.Abstractions.Attributes;
 using MCM.Abstractions.Attributes.v2;
 using MCM.Abstractions.Base.Global;
-using MCM.Common;
 
-namespace EasySell
+namespace EasySell.Settings
 {
-    public sealed class EasySellSettings : AttributeGlobalSettings<EasySellSettings>
+    public sealed class ModSettings : AttributeGlobalSettings<ModSettings>
     {
         public override string Id => "EasySellMod";
         public override string DisplayName => "Easy Sell Mod";
