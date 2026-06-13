@@ -3,19 +3,19 @@
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/BUTR/Bannerlord.XmlSchemas/master/SubModule.xsd">
     <Id value="$moduleid$" />
     <Name value="$modulename$" />
-    <Version value="v$version$" />
+    <Version value="v0.0.1" />
     <DefaultModule value="false" />
     <ModuleCategory value="Singleplayer" />
     <ModuleType value="Community" />
     <Url value="$moduleurl$" />
     <DependedModules>
         <DependedModule Id="Bannerlord.Harmony"
-                        DependentVersion="v2.2.2" />
+                        DependentVersion="v2.2.4" />
         <DependedModule Id="Bannerlord.ButterLib"
-                        DependentVersion="v5.11.4" />
+                        DependentVersion="v2.10.4" />
         <DependedModule Id="Bannerlord.UIExtenderEx"
                         DependentVersion="v2.13.2" />
-        <DependedModule Id="Bannerlord.MBOptionScreen" />
+        <DependedModule Id="Bannerlord.MBOptionScreen" DependentVersion="v5.11.4" />
         <DependedModule Id="Native" />
         <DependedModule Id="SandBoxCore" />
         <DependedModule Id="Sandbox" />
@@ -27,10 +27,10 @@
     <DependedModuleMetadatas>
         <DependedModuleMetadata id="Bannerlord.Harmony"
                                 order="LoadBeforeThis"
-                                version="v2.3.3" />
+                                version="v2.2.4" />
         <DependedModuleMetadata id="Bannerlord.ButterLib"
                                 order="LoadBeforeThis"
-                                version="v5.11.4" />
+                                version="2.10.4" />
         <DependedModuleMetadata id="Bannerlord.UIExtenderEx"
                                 order="LoadBeforeThis"
                                 version="v2.13.2" />
