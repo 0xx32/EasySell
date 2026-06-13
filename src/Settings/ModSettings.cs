@@ -23,23 +23,23 @@ namespace EasySell.Settings
 
         public int PriceThreshold { get; set; } = 1000;
 
-        [SettingPropertyBool("Товары")]
+        [SettingPropertyBool("Товары", Order = 4, RequireRestart = false)]
         [SettingPropertyGroup("Фильтры продажи")]
         public bool Goods { get; set; } = true;
 
-        [SettingPropertyBool("Оружие")]
+        [SettingPropertyBool("Оружие", Order = 3, RequireRestart = false)]
         [SettingPropertyGroup("Фильтры продажи")]
         public bool Weapon { get; set; } = false;
 
-        [SettingPropertyBool("Броня")]
+        [SettingPropertyBool("Броня", Order = 2, RequireRestart = false)]
         [SettingPropertyGroup("Фильтры продажи")]
         public bool Armor { get; set; } = false;
 
-        [SettingPropertyBool("Еда")]
+        [SettingPropertyBool("Еда", Order = 1, RequireRestart = false)]
         [SettingPropertyGroup("Фильтры продажи")]
         public bool Food { get; set; } = false;
 
-        [SettingPropertyBool("Лошадей и экипировку лошади")]
+        [SettingPropertyBool("Лошади и экипировку лошади", Order = 0, RequireRestart = false)]
         [SettingPropertyGroup("Фильтры продажи")]
         public bool Horse { get; set; } = false;
 
