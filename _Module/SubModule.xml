@@ -7,7 +7,7 @@
     <DefaultModule value="false" />
     <ModuleCategory value="Singleplayer" />
     <ModuleType value="Community" />
-    <Url value="$moduleurl$" />
+    <Url value="https://www.nexusmods.com/mountandblade2bannerlord/mods/11617" />
     <DependedModules>
         <DependedModule Id="Bannerlord.Harmony"
                         DependentVersion="v2.2.4" />

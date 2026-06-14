@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
     <tags>
-        <tag language="Russian" />
+        <tag language="Русский" />
     </tags>
     <strings>
-        <string id="jZP8LQDtKA" text="Какой то текст" />
-        <string id="conditionalStringID" text="This proposal is on cooldown for {NUMBER_OF_DAYS} {?NUMBER_OF_DAYS.PLURAL_FORM}days{?}day{\?}." />      
+        <string id="ES_jZP8LQDtKA" text="Быстрая продажа" />
+        <string id="ES_gTY8IPdXyD" text="У вас нет товаров для продажи" />      
+        <string id="ES_cIe25H3z4M" text="Нет подходящих товаров для продажи" />
+        <string id="ES_hluMuFhFQ0" text="Продано товаров: {SOLD_COUNT}. Получено: {TOTAL_GOLD}" />
+
+        <!-- Settings -->
+        <string id="ES_Wzfkoth5qJ" text="Основные" />
+        <string id="ES_gg2siUr5Lu" text="Фильтры" />
+        <string id="ES_ZimwanKmqQ" text="Цена продажи" />
+        <string id="ES_Ihp6skXIwe" text="Продавайте товары по цене ниже этой стоимости" />
+        <string id="ES_5Kjiok81rR" text="Защита продовольствия" />
+        <string id="ES_bLvvOFIgpk" text="Оставлять количество еды в размере продовольственного резерва" />
+        <string id="ES_9xXCnZVW2R" text="Продовольственный резерв" />
+        <string id="ES_oppcBiajIG" text="Лошади и экипировка лошади" />
+        <string id="ES_0wG4eY5VJt" text="Товары" />
+        <string id="ES_PX2UqtZL09" text="Оружие" />
+        <string id="ES_Ksd2dTmj67" text="Броня" />
+        <string id="ES_Ly9sUUSUiD" text="Еда" />
+        <string id="ES_GCUn5kTMHd" text="Животные" />
     </strings>
 </base>

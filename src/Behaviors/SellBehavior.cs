@@ -1,3 +1,4 @@
+using EasySell.Settings;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
 using TaleWorlds.CampaignSystem.GameMenus;
@@ -5,7 +6,7 @@ using TaleWorlds.CampaignSystem.Party;
 using TaleWorlds.CampaignSystem.Settlements;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
-using EasySell.Settings;
+using TaleWorlds.Localization;
 
 namespace EasySell.Behaviors
 {
@@ -13,9 +14,7 @@ namespace EasySell.Behaviors
     {
         public override void RegisterEvents()
         {
-            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(
-                this,
-                OnSessionLaunched);
+            CampaignEvents.OnSessionLaunchedEvent.AddNonSerializedListener(this, OnSessionLaunched);
         }
 
         private void OnSessionLaunched(CampaignGameStarter starter)
@@ -23,16 +22,15 @@ namespace EasySell.Behaviors
             starter.AddGameMenuOption(
                 "town",
                 "auto_sell_items",
-                "Продать дешёвые вещи",
+                new TextObject("{=ES_jZP8LQDtKA}Quick sale").ToStringWithoutClear(),
                 SellItemsCondition,
                 SellItemsConsequence,
                 false,
-                5);
+                5
+            );
         }
 
-        public override void SyncData(IDataStore dataStore)
-        {
-        }
+        public override void SyncData(IDataStore dataStore) { }
 
         private bool SellItemsCondition(MenuCallbackArgs args)
         {
@@ -55,7 +53,12 @@ namespace EasySell.Behaviors
             if (itemRoster.Count < 1)
             {
                 InformationManager.DisplayMessage(
-                    new InformationMessage("У вас нет вещей для продажи."));
+                    new InformationMessage(
+                        new TextObject(
+                            "{=ES_gTY8IPdXyD}You don't have any items to sell"
+                        ).ToString()
+                    )
+                );
                 return;
             }
 
@@ -64,7 +67,6 @@ namespace EasySell.Behaviors
 
             for (int i = itemRoster.Count - 1; i >= 0; i--)
             {
-
                 var rosterElement = itemRoster[i];
 
                 if (rosterElement.Amount <= 0)
@@ -73,10 +75,12 @@ namespace EasySell.Behaviors
                 var itemObject = itemRoster.GetItemAtIndex(i);
                 int countToSell = rosterElement.Amount;
 
-
                 if (modSetting.IsFoodProtection && itemObject.IsFood)
                 {
-                    countToSell = rosterElement.Amount > modSetting.FoodReserveAmount ? rosterElement.Amount - modSetting.FoodReserveAmount : 0;
+                    countToSell =
+                        rosterElement.Amount > modSetting.FoodReserveAmount
+                            ? rosterElement.Amount - modSetting.FoodReserveAmount
+                            : 0;
                 }
 
                 if (countToSell <= 0)
@@ -85,10 +89,7 @@ namespace EasySell.Behaviors
                 if (!CanSell(itemObject))
                     continue;
 
-                int itemPrice = settlement.Town.GetItemPrice(
-                    itemObject,
-                    mainParty,
-                    true);
+                int itemPrice = settlement.Town.GetItemPrice(itemObject, mainParty, true);
 
                 if (itemPrice <= 0 || itemPrice > modSetting.PriceThreshold)
                     continue;
@@ -102,20 +103,26 @@ namespace EasySell.Behaviors
             {
                 InformationManager.DisplayMessage(
                     new InformationMessage(
-                        $"Нет подходящих предметов для продажи"));
+                        new TextObject(
+                            "{=ES_cIe25H3z4M}There are no suitable items for sale"
+                        ).ToString()
+                    )
+                );
                 return;
             }
 
-            GiveGoldAction.ApplyBetweenCharacters(
-                null,
-                Hero.MainHero,
-                totalGold);
-
-
+            GiveGoldAction.ApplyBetweenCharacters(null, Hero.MainHero, totalGold);
 
             InformationManager.DisplayMessage(
                 new InformationMessage(
-                    $"Продано предметов: {soldCount}. Получено: {totalGold} денаров."));
+                    new TextObject(
+                        "{=ES_hluMuFhFQ0}Items solddddd: {SOLD_COUNT}. Received: {TOTAL_GOLD}"
+                    )
+                        .SetTextVariable("SOLD_COUNT", soldCount)
+                        .SetTextVariable("TOTAL_GOLD", totalGold)
+                        .ToString()
+                )
+            );
         }
 
         private static bool CanSell(ItemObject item)

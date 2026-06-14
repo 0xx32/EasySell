@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+    <tags>
+        <tag language="English" />
+    </tags>
+    <strings>
+        <string id="ES_jZP8LQDtKA" text="Quick Sell" />
+        <string id="ES_gTY8IPdXyD" text="You have no items to sell" />      
+        <string id="ES_cIe25H3z4M" text="No suitable items to sell" />
+        <string id="ES_hluMuFhFQ0" text="Items sold: {SOLD_COUNT}. Received: {TOTAL_GOLD}" />
+
+        <!-- Settings -->
+        <string id="ES_Wzfkoth5qJ" text="General" />
+        <string id="ES_gg2siUr5Lu" text="Filters" />
+        <string id="ES_ZimwanKmqQ" text="Sell Price" />
+        <string id="ES_Ihp6skXIwe" text="Sell items below this price" />
+        <string id="ES_5Kjiok81rR" text="Food Protection" />
+        <string id="ES_bLvvOFIgpk" text="Keep food amount equal to the food reserve" />
+        <string id="ES_9xXCnZVW2R" text="Food Reserve" />
+        <string id="ES_oppcBiajIG" text="Horses and Horse Equipment" />
+        <string id="ES_0wG4eY5VJt" text="Goods" />
+        <string id="ES_PX2UqtZL09" text="Weapons" />
+        <string id="ES_Ksd2dTmj67" text="Armor" />
+        <string id="ES_Ly9sUUSUiD" text="Food" />
+        <string id="ES_GCUn5kTMHd" text="Animals" />
+    </strings>
+</base>

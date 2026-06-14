@@ -1,7 +1,7 @@
-﻿using TaleWorlds.CampaignSystem;
+﻿using EasySell.Behaviors;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
-using EasySell.Behaviors;
 
 namespace EasySell;
 
@@ -13,8 +13,7 @@ public class EasySellSubModule : MBSubModuleBase
 
         if (game.GameType is Campaign)
         {
-            CampaignGameStarter starter =
-                (CampaignGameStarter)starterObject;
+            CampaignGameStarter starter = (CampaignGameStarter)starterObject;
 
             starter.AddBehavior(new SellBehavior());
         }

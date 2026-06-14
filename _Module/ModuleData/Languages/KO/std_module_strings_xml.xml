@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+    <tags>
+        <tag language="한국어" />
+    </tags>
+    <strings>
+        <string id="ES_jZP8LQDtKA" text="빠른 판매" />
+        <string id="ES_gTY8IPdXyD" text="판매할 물건이 없습니다" />      
+        <string id="ES_cIe25H3z4M" text="판매할 수 있는 물건이 없습니다" />
+        <string id="ES_hluMuFhFQ0" text="판매된 물건: {SOLD_COUNT}. 수령: {TOTAL_GOLD}" />
+
+        <!-- Settings -->
+        <string id="ES_Wzfkoth5qJ" text="일반" />
+        <string id="ES_gg2siUr5Lu" text="필터" />
+        <string id="ES_ZimwanKmqQ" text="판매 가격" />
+        <string id="ES_Ihp6skXIwe" text="이 가격 이하의 물건 판매" />
+        <string id="ES_5Kjiok81rR" text="식량 보호" />
+        <string id="ES_bLvvOFIgpk" text="식량 보유량을 식량 비축량과 동일하게 유지" />
+        <string id="ES_9xXCnZVW2R" text="식량 비축" />
+        <string id="ES_oppcBiajIG" text="말 및 말 장비" />
+        <string id="ES_0wG4eY5VJt" text="상품" />
+        <string id="ES_PX2UqtZL09" text="무기" />
+        <string id="ES_Ksd2dTmj67" text="갑옷" />
+        <string id="ES_Ly9sUUSUiD" text="식량" />
+        <string id="ES_GCUn5kTMHd" text="동물" />
+    </strings>
+</base>
