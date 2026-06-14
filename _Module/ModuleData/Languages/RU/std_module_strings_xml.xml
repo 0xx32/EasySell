@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<base xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" type="string">
+    <tags>
+        <tag language="Russian" />
+    </tags>
+    <strings>
+        <string id="jZP8LQDtKA" text="Какой то текст" />
+        <string id="conditionalStringID" text="This proposal is on cooldown for {NUMBER_OF_DAYS} {?NUMBER_OF_DAYS.PLURAL_FORM}days{?}day{\?}." />      
+    </strings>
+</base>

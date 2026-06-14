@@ -4,7 +4,8 @@
 bin/
 obj/
 out/
-publish/
+Publish/
+.build/
 
 # =========================
 # Visual Studio

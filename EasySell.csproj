@@ -86,4 +86,47 @@
                           PrivateAssets="all"
                           IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     </ItemGroup>
+    <Target Name="PackMod">
+        <PropertyGroup>
+            <ProjectRoot>$(MSBuildProjectDirectory)</ProjectRoot>
+            <PublishDir>$(ProjectRoot)\Publish\$(ModuleId)</PublishDir>
+            <GameModDir>$(GameFolder)\Modules\$(ModuleId)</GameModDir>
+            <ZipFile>$(ProjectRoot)\Publish\$(ModuleId)_v$(Version).zip</ZipFile>
+        </PropertyGroup>
+        <Message Text="=== Шаг 1: Сборка проекта (BUTR скопирует файлы в игру) ==="
+                 Importance="high" />
+        <MSBuild Projects="$(MSBuildProjectFile)"
+                 Targets="Build"
+                 Properties="Configuration=Release;Platform=x64" />
+        <Message Text="=== Шаг 2: Проверка наличия файлов в папке игры ==="
+                 Importance="high" />
+        <Error Condition="'$(GameFolder)' == ''"
+               Text="ОШИБКА: Переменная BANNERLORD_GAME_DIR не задана." />
+        <Error Condition="!Exists('$(GameModDir)')"
+               Text="ОШИБКА: Папка мода не найдена в игре: $(GameModDir). Проверьте путь к игре или запустите 'dotnet build' вручную." />
+        <Message Text="=== Шаг 3: Подготовка папки Publish ==="
+                 Importance="high" />
+        <RemoveDir Directories="$(PublishDir)"
+                   Condition="Exists('$(PublishDir)')" />
+        <MakeDir Directories="$(PublishDir)" />
+        <Message Text="=== Шаг 4: Копирование готового мода из папки игры ==="
+                 Importance="high" />
+        <Exec Command="robocopy &quot;$(GameModDir)&quot; &quot;$(PublishDir)&quot; /E /NFL /NDL /NJH /NJS"
+              IgnoreExitCode="true" />
+        <Message Text="=== Шаг 5: Очистка от PDB и создание ZIP архива ==="
+                 Importance="high" />
+        <Exec Command="powershell -NoProfile -Command &quot;Remove-Item -Path '$(PublishDir)\bin\Win64_Shipping_Client\*.pdb' -Force -ErrorAction SilentlyContinue&quot;"
+              IgnoreExitCode="true" />
+        <Exec Command="powershell -NoProfile -Command &quot;Compress-Archive -Path '$(PublishDir)\*' -DestinationPath '$(ZipFile)' -Force&quot;" />
+        <Message Text="========================================"
+                 Importance="high" />
+        <Message Text=" УСПЕХ! Готовая папка: $(PublishDir)"
+                 Importance="high" />
+        <Message Text=" УСПЕХ! ZIP архив: $(ZipFile)"
+                 Importance="high" />
+        <Message Text="========================================"
+                 Importance="high" />
+    </Target>
+    <Target Name="Pack"
+            DependsOnTargets="PackMod" />
 </Project>
